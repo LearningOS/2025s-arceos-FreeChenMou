@@ -9,6 +9,13 @@ pub struct HashMap<K, V> {
     base: Vec<Vec<(K, V)>>,
 }
 
+impl Hash for alloc::string::String {
+    fn hash<H: Hasher>(&self, hasher: &mut H) {
+        for c in self.as_bytes(){
+            hasher.write_u8(c);
+        }
+    }
+}
 
 impl<K, V> HashMap<K, V>
 where
