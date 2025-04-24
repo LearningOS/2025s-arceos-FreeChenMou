@@ -1,5 +1,5 @@
-#![cfg_attr(feature = "axstd", no_std)]
-#![cfg_attr(feature = "axstd", no_main)]
+#![no_std]
+#![no_main]
 
 #[macro_use]
 #[cfg(feature = "axstd")]
@@ -23,6 +23,7 @@ fn test_hashmap() {
     }
     for (k, v) in m.iter() {
         if let Some(k) = k.strip_prefix("key_") {
+            println!("key is {} v is {}",k, v);
             assert_eq!(k.parse::<u32>().unwrap(), *v);
         }
     }

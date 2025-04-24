@@ -9,6 +9,7 @@ pub struct HashMap<K, V> {
     base: Vec<Vec<(K, V)>>,
 }
 
+
 impl<K, V> HashMap<K, V>
 where
     K: Eq + Hash,
