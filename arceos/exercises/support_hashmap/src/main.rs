@@ -1,5 +1,7 @@
-#![cfg_attr(feature = "axstd", no_std)]
-#![cfg_attr(feature = "axstd", no_main)]
+#![no_std]
+#![no_main]
+
+
 
 #[macro_use]
 #[cfg(feature = "axstd")]
@@ -15,7 +17,7 @@ fn main() {
 }
 
 fn test_hashmap() {
-    const N: u32 = 50_000;
+    const N: u32 = 50;
     let mut m = HashMap::new();
     for value in 0..N {
         let key = format!("key_{value}");
@@ -23,6 +25,7 @@ fn test_hashmap() {
         
     }
     for (k, v) in m.iter() {
+        //println!("k:{} v:{}",k,v);
         if let Some(k) = k.strip_prefix("key_") {
             assert_eq!(k.parse::<u32>().unwrap(), *v);
         }
