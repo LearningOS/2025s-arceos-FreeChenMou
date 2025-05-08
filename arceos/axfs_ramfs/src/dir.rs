@@ -67,6 +67,7 @@ impl DirNode {
         children.remove(name);
         Ok(())
     }
+
 }
 
 impl VfsNodeOps for DirNode {
@@ -163,6 +164,21 @@ impl VfsNodeOps for DirNode {
         } else {
             self.remove_node(name)
         }
+    }
+    
+    /// for file rename operation
+    fn rename(&self, src_path: &str, dst_path: &str) -> VfsResult {
+        let (name, _rest) = split_path(src_path);
+
+        if name.is_empty() || name == "." || name == ".."{
+            return  Err(VfsError::NotFound);
+        }
+
+        let node = self.children.read().get(name).unwrap().clone();
+        let dst_name = dst_path.split('/').last().unwrap_or(dst_path);
+        self.children.write().insert(dst_name.into(), node);
+
+        Ok(())
     }
 
     axfs_vfs::impl_vfs_dir_default! {}

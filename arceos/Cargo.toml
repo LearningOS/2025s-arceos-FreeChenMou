@@ -91,7 +91,9 @@ axtask = { path = "modules/axtask" }
 axdma = { path = "modules/axdma" }
 elf = { path = "modules/elf" }
 
+
 [patch.crates-io]
+axfs_ramfs = { path = "axfs_ramfs" }
 kernel_guard = { path = "../crates/kernel_guard"} 
 [profile.release]
 lto = true

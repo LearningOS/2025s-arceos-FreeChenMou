@@ -10,7 +10,6 @@ pub struct HashMap<K, V> {
     base: Vec<Vec<(K, V)>>,
 }
 
-
 impl<K, V> HashMap<K, V>
 where
     K: Eq + Hash,
@@ -44,7 +43,6 @@ where
                 return Some(&map.1)
             }
         }
-
         return None;
     }
 
@@ -55,11 +53,6 @@ where
 
 
 impl DefaultHasher {
-    /// Creates a new `DefaultHasher`.
-    /// use usize because vce index is usize
-    /// This hasher is not guaranteed to be the same as all other
-    /// `DefaultHasher` instances, but is the same as all other `DefaultHasher`
-    /// instances created through `new` or `default`.
     pub fn new() -> Self {
         Self(random() as u64)
     }
